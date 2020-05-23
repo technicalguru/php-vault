@@ -6,6 +6,7 @@ This project is licensed under [GNU LGPL 3.0](LICENSE.md).
 
 # Examples
 ## Create a HashicorpVault
+Please note that this vault is actually a client to an existing Hashicorp Vault.
 ```
 // Create configuration
 $config = array(
