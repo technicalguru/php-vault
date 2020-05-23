@@ -23,7 +23,7 @@ class CredentialsProvider extends SecretProvider {
 	  * @throws VaultException when vault or path are NULL
 	  */
 	public function __construct(Vault $vault, string $path, string $usernameKey = NULL, string $passwordKey = NULL) {
-		parent:__construct($vault, $path);
+		parent::__construct($vault, $path);
 		if (($usernameKey == NULL) || (trim($usernameKey) == '')) $usernameKey = 'username';
 		if (($passwordKey == NULL) || (trim($passwordKey) == '')) $passwordKey = 'password';
 		$this->usernameKey = $usernameKey;
