@@ -17,5 +17,10 @@
         "psr-4": {
             "Vault\\": "Vault/"
         }
+    },
+	"extra": {
+        "branch-alias": {
+            "dev-master": "develop"
+        }
     }
 }
