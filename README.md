@@ -124,7 +124,7 @@ try {
 }
 ```
 
-The `CredentialsProvider` takes additional constructor arguments that define, which keys in the secret username and password can be found. The 
+The `CredentialsProvider` takes additional constructor arguments that define, which keys in the secret provide username and password. The 
 defaults are as given below for the `SecretProvider`.
 
 
