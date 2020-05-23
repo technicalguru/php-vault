@@ -125,7 +125,7 @@ try {
 ```
 
 The `CredentialsProvider` takes additional constructor arguments that define, which keys in the secret provide username and password. The 
-defaults are as given below for the `SecretProvider`.
+defaults are as given above for the `SecretProvider`.
 
 
 # Contribution
