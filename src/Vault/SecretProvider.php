@@ -9,10 +9,21 @@ namespace Vault;
   */
 class SecretProvider {
 
+	/** The backend vault instance */
 	private $vault;
+	/** The path of the secret in the vault */
 	private $path;
+	/** The secret fetched from the vault */
 	private $secret;
 
+	/**
+	  * Construct the provider.
+	  * @param Vault  $vault       - the backend vault instance
+	  * @param string $path        - the path of the secret in the vault
+	  * @param string $usernameKey - the key in the secret holding the username (default is 'username')
+	  * @param string $passwordKey - the key in the secret holding the password (default is 'password')
+	  * @throws VaultException when vault or path are NULL
+	  */
 	public function __construct(Vault $vault, string $path) {
 		if ($vault == NULL) throw new VaultException('Vault cannot be NULL.', VAULT_ERR_NULL);
 		if ($path  == NULL) throw new VaultException('Path cannot be NULL.', VAULT_ERR_NULL);
@@ -48,7 +59,6 @@ class SecretProvider {
 				$this->secret = $this->vault->getSecret($this->path);
 			} catch (VaultException $e) {
 				$this->secret = $e;
-				\WLog::error('thrown in vault::getSecret - '.$e->getMessage(), $e);
 				throw $e;
 			}
 		}

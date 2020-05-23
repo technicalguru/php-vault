@@ -102,8 +102,31 @@ $username2 = $mySecret2->get('username');
 $password2 = $mySecret2->get('password');
 ```
 
-A value in a key is `NULL` when the key does not exists whereas an exception will be thrown when the secret itself cannot be found
+A value in a secret is `NULL` when the key does not exists whereas an exception will be thrown when the secret itself cannot be found
 or an error occurred while retrieval.
+
+## Using lazy callback credentials
+You can use the `SecretProvider` or `CredentialsProvider` helper classes to pass them credentials without knowing where they come from
+or how to use a vault.
+
+```
+$callback1 = new \Vault\SecretProvider($vault, 'my/secret/number/1');
+$callback2 = new \Vault\CredentialsProvider($vault, 'my/secret/number/2');
+
+try {
+	$username1 = $callback1->get('username');
+	$password1 = $callback1->get('password');
+
+	$username2 = $callback2->getUsername();
+	$password2 = $callback2->getPassword();
+} catch (\Vault\VaultException $e) {
+	// Secret cannot be retrieved or does not exist
+}
+```
+
+The `CredentialsProvider` takes additional constructor arguments that define, which keys in the secret username and password can be found. The 
+defaults are as given below for the `SecretProvider`.
+
 
 # Contribution
 Report a bug, request an enhancement or pull request at the [GitHub Issue Tracker](https://github.com/technicalguru/vault-php/issues).
