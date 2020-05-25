@@ -19,8 +19,9 @@ class Cache {
 	/**
 	  * Creates the cache.
 	  * @param string $cacheFile - where the cache is located in filesystem.
+	  * @param object $logger    - a logger, either Vault\Logger or Psr\Log\LoggerInterface
 	  */
-	public function __construct(string $cacheFile, Logger $logger = NULL) {
+	public function __construct(string $cacheFile, $logger = NULL) {
 		$this->cacheFile = $cacheFile;
 		$this->logger    = $logger;
 	}
@@ -96,9 +97,9 @@ class Cache {
 
 	/**
 	  * Set the logger and log all information via this object.
-	  * @param Logger - the logging object.
+	  * @param object $logger    - a logger, either Vault\Logger or Psr\Log\LoggerInterface
 	  */
-	public function setLogger(Logger $logger) {
+	public function setLogger($logger) {
 		$this->logger = $logger;
 	}
 }

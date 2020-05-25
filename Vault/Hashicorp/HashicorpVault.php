@@ -8,6 +8,13 @@ use Vault\Secret;
 use Vault\VaultException;
 use Vault\Logger;
 
+/**
+  * A vault representing an existing (!) Hashicorp Vault in the background.
+  * You need to setup your Hashicorp Vault backend yourself, including all
+  * required configuration. This class HashicorpVault acts as a client to
+  * your real vault using AppRole token authorization. It takes the role ID
+  * and the secret ID to request token which can be used to retrieve the secrets.
+  */
 class HashicorpVault extends BaseVault implements Vault {
 
 	protected $isTls;
@@ -17,7 +24,12 @@ class HashicorpVault extends BaseVault implements Vault {
 	private   $token;
 	private   $secrets;
 
-	public function __construct($config, Logger $logger = NULL) {
+	/**
+	  * Constructor.
+	  * @param mixed  $config - the configuration, see Vaul\Hashicorp\Config for details.
+	  * @param object $logger - the logger, e.g. a Vault\Logger or a Psr\Log\LoggerInterface.
+	  */
+	public function __construct($config, $logger = NULL) {
 		parent::__construct($logger);
 		if ($config == NULL) throw new VaultException('Configuration must be set', VAULT_ERR_CONFIG_EMPTY);
 		$this->config   = new Config($config);
@@ -56,9 +68,9 @@ class HashicorpVault extends BaseVault implements Vault {
 
 	/**
 	  * Set the logger and log all information via this object.
-	  * @param Logger - the logging object.
+	  * @param object $logger - the logging object, either Vault\Logger or Psr\Log\LoggerInterface
 	  */
-	public function setLogger(Logger $logger) {
+	public function setLogger($logger) {
 		parent::setLogger($logger);
 		$this->cache->setLogger($logger);
 	}

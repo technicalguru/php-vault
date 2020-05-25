@@ -13,9 +13,9 @@ class BaseVault implements Vault {
 
 	/**
 	  * Default constructor that only takes an optiona logger object.
-	  * @param Logger $logger - the logger object.
+	  * @param object $logger - the logger object, can be a Psr\Log\LoggerInterface or a \Vault\Logger.
 	  */
-	public function __construct(Logger $logger = NULL) {
+	public function __construct($logger = NULL) {
 		$this->logger   = $logger;
 	}
 
@@ -32,9 +32,10 @@ class BaseVault implements Vault {
 
 	/**
 	  * Set the logger and log all information via this object.
+	  * This can be a Psr\Log\LoggerInterface or a \Vault\Logger.
 	  * @param Logger - the logging object.
 	  */
-	public function setLogger(Logger $logger) {
+	public function setLogger($logger) {
 		$this->logger = $logger;
 	}
 
@@ -47,7 +48,11 @@ class BaseVault implements Vault {
 	protected function debug(string $s, $object = NULL) {
 		if ($this->logger != NULL) {
 			$object = self::cleanObject($object);
-			$this->logger->debug($this->getLoggerPrefix().$s, $object);
+			$psrInterface = '\\Psr\\Log\\LoggerInterface';
+			if ($this->logger instanceof $psrInterface) {
+			} else if ($this->logger instanceof Logger) {
+				$this->logger->debug($this->getLoggerPrefix().$s, $object);
+			}
 		}
 	}
 
@@ -60,7 +65,11 @@ class BaseVault implements Vault {
 	protected function warn(string $s, $object = NULL) {
 		if ($this->logger != NULL) {
 			$object = self::cleanObject($object);
-			$this->logger->warn($this->getLoggerPrefix().$s, $object);
+			$psrInterface = '\\Psr\\Log\\LoggerInterface';
+			if ($this->logger instanceof $psrInterface) {
+			} else if ($this->logger instanceof Logger) {
+				$this->logger->warn($this->getLoggerPrefix().$s, $object);
+			}
 		}
 	}
 
@@ -73,7 +82,11 @@ class BaseVault implements Vault {
 	protected function info(string $s, $object = NULL) {
 		if ($this->logger != NULL) {
 			$object = self::cleanObject($object);
-			$this->logger->info($this->getLoggerPrefix().$s, $object);
+			$psrInterface = '\\Psr\\Log\\LoggerInterface';
+			if ($this->logger instanceof $psrInterface) {
+			} else if ($this->logger instanceof Logger) {
+				$this->logger->info($this->getLoggerPrefix().$s, $object);
+			}
 		}
 	}
 
@@ -86,7 +99,11 @@ class BaseVault implements Vault {
 	protected function error(string $s, $object = NULL) {
 		if ($this->logger != NULL) {
 			$object = self::cleanObject($object);
-			$this->logger->error($this->getLoggerPrefix().$s, $object);
+			$psrInterface = '\\Psr\\Log\\LoggerInterface';
+			if ($this->logger instanceof $psrInterface) {
+			} else if ($this->logger instanceof Logger) {
+				$this->logger->error($this->getLoggerPrefix().$s, $object);
+			}
 		}
 	}
 
