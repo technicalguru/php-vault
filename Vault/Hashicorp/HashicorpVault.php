@@ -90,7 +90,7 @@ class HashicorpVault extends BaseVault implements Vault {
 
 	public function getSecretError($path, $asText = true) {
 		$response = $this->secrets[$path];
-		if (is_a($response, 'Vault\\Secret')) {
+		if ($response instanceof Secret) {
 			return $asText ? 'Secret successfully retrieved' : VAULT_SECRET_OK;
 		}
 		if ($response->error > 0) {
