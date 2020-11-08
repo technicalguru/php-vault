@@ -25,7 +25,7 @@ class FileVault extends BaseVault implements Vault {
 	  * @param mixed $config  - array or object with key/attribute 'filename'.
 	  * @param Logger $logger - the logger to be used (not used in this implementation)
 	  */
-	public function __construct($config, Logger $logger = NULL) {
+	public function __construct($config, $logger = NULL) {
 		parent::__construct($logger);
 		if ($config == NULL) throw new VaultException('Configuration must be set', VAULT_ERR_CONFIG_EMPTY);
 		$this->secrets  = NULL;

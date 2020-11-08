@@ -1,26 +1,34 @@
 {
-    "name": "technicalguru/vault-php",
-	"description": "A flexible, lightweight PHP-based vault to provide secrets dynamically",
-	"type": "library",
-	"keywords": ["framework","vault","vault-client","hashicorp","hashicorp-vault"],
-	"license": "LGPL-3.0-or-later",
-	"authors": [
-        {
-            "name": "TechnicalGuru",
-            "homepage": "https://github.com/technicalguru/vault-php"
-        }
-    ],
-	"require": {
+	"name" : "technicalguru/vault-php",
+	"description" : "A flexible, lightweight PHP-based vault to provide secrets dynamically",
+	"type" : "library",
+	"keywords" : [
+		"framework",
+		"vault",
+		"vault-client",
+		"hashicorp",
+		"hashicorp-vault"
+	],
+	"license" : "LGPL-3.0-or-later",
+	"authors" : [{
+			"name" : "TechnicalGuru",
+			"homepage" : "https://github.com/technicalguru/vault-php"
+		}
+	],
+	"require" : {
 		"php" : ">=7.0.0"
 	},
-	"autoload": {
-        "psr-4": {
-            "Vault\\": "Vault/"
-        }
-    },
-	"extra": {
-        "branch-alias": {
-            "dev-master": "develop"
-        }
-    }
+	"autoload" : {
+		"psr-4" : {
+			"Vault\\" : "Vault/"
+		}
+	},
+	"extra" : {
+		"branch-alias" : {
+			"dev-master" : "main-dev"
+		}
+	},
+	"require-dev" : {
+		"phpunit/phpunit" : "^9"
+	}
 }

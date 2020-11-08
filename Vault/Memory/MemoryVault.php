@@ -20,9 +20,9 @@ class MemoryVault extends BaseVault implements Vault {
 	/**
 	  * Creates the memory vault with secrets.
 	  * @param mixed $config  - array or object with only key/attribute 'secrets' that is an array(path => data).
-	  * @param Logger $logger - the logger to be used (not used in this implementation)
+	  * @param object $logger - the logger to be used (not used in this implementation)
 	  */
-	public function __construct($config, Logger $logger = NULL) {
+	public function __construct($config, $logger = NULL) {
 		parent::__construct($logger);
 		if ($config == NULL) throw new VaultException('Configuration must be set', VAULT_ERR_CONFIG_EMPTY);
 		$this->secrets  = array();

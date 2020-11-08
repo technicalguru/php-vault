@@ -1,0 +1,12 @@
+{
+	"secrets": {
+		"my/secret/number/1" : {
+			"username" : "my-username1",
+			"password" : "my-password1"
+		},
+		"my/secret/number/2" : {
+			"username" : "my-username2",
+			"password" : "my-password2"
+		}
+	}
+}

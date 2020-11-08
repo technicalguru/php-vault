@@ -43,7 +43,7 @@ class SecretProvider {
 		if ($this->secret == NULL) {
 			$this->loadSecret();
 		}
-		if (($this->secret != NULL) && is_a($this->secret, 'Vault\\Secret')) {
+		if (($this->secret != NULL) && ($this->secret instanceof Secret)) {
 			return $this->secret->get($key);
 		}
 		throw new VaultException('No such secret: '.$this->path, VAULT_ERR_NOT_FOUND);
