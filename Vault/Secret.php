@@ -19,10 +19,13 @@ class Secret {
 		if (is_object($data)) $data = get_object_vars($data);
 		if (is_array($data)) {
 			foreach ($data AS $key => $value) {
-				$this->$key = $value;
+			    if (is_array($value)) {
+			        $this->$key = json_decode(json_encode($value));
+			    } else {
+				    $this->$key = $value;
+			    }
 			}
 		} else {
-			echo "What???<br>\n";
 			$this->data = $data;
 		}
 	}
