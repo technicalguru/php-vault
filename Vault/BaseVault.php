@@ -123,7 +123,7 @@ class BaseVault implements Vault {
 	}
 
 	/**
-	  * Copies the given object an redacts any sensitive strings, such as
+	  * Copies the given object and redacts any sensitive strings, such as
 	  * passwords, usernames and tokens. The decision is based on object
 	  * attribute names. Arrays are not redacted (!).
 	  * @param object $o - the object to clean
