@@ -2,6 +2,8 @@
 
 namespace Vault;
 
+require_once(__DIR__.'/commons.php');
+
 /**
   * A secret that holds the values from the vault.
   * This calss is usually created by vaults only.

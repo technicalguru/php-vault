@@ -2,6 +2,8 @@
 
 namespace Vault\Hashicorp;
 
+require_once(__DIR__.'/../commons.php');
+
 use Vault\VaultException;
 
 /**

@@ -2,6 +2,8 @@
 
 namespace Vault;
 
+require_once(__DIR__.'/commons.php');
+
 /**
   * Base class for all vault implementations here.
   * It provides the logging mechanism only.

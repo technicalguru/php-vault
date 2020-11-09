@@ -2,6 +2,8 @@
 
 namespace Vault;
 
+require_once(__DIR__.'/commons.php');
+
 /**
   * A vault exception for any errors that need to be brought to attention.
   */

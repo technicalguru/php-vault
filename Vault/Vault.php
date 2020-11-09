@@ -2,6 +2,8 @@
 
 namespace Vault;
 
+require_once(__DIR__.'/commons.php');
+
 /**
   * All vault types must implement this interface.
   */

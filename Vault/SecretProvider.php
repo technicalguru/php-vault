@@ -2,6 +2,8 @@
 
 namespace Vault;
 
+require_once(__DIR__.'/commons.php');
+
 /**
   * A Helper class that has a vault as a backend and a defined secret path to request.
   * An application can use this to fetch the required secret on request only. The
