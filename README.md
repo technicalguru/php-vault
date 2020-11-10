@@ -4,9 +4,20 @@ A flexible PHP-based vault to provide secrets dynamically
 # License
 This project is licensed under [GNU LGPL 3.0](LICENSE.md). 
 
+# Installation
+
+## By Composer
+
+```
+composer install technicalguru/vault-php
+```
+
+## By Package Download
+You can download the source code packages from [GitHub Release Page](https://github.com/technicalguru/vault-php/releases)
 # Examples
 ## Create a HashicorpVault
 Please note that this vault is actually a client to an existing Hashicorp Vault.
+
 ```
 // Create configuration
 $config = array(
@@ -28,6 +39,7 @@ try {
 ```
 
 ## Create a MemoryVault
+
 ```
 // Create configuration
 $config = array(
@@ -55,6 +67,7 @@ try {
 ```
 
 ## Create a FileVault
+
 ```
 // Create configuration
 $config = array(
@@ -73,6 +86,7 @@ try {
 ```
 
 The secrets file (JSON) shall look like this:
+
 ```
 {
 	"secrets": {
@@ -89,6 +103,7 @@ The secrets file (JSON) shall look like this:
 ```
 
 ## Retrieving a secret
+
 ```
 try {
 	$mySecret1 = $vault->get('my/secret/number/1');
