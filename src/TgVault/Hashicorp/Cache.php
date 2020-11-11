@@ -1,8 +1,8 @@
 <?php
 
-namespace Vault\Hashicorp;
+namespace TgVault\Hashicorp;
 
-use Vault\Logger;
+require_once(__DIR__.'/../commons.php');
 
 /**
   * A simple file cache mainly for the token.
@@ -62,7 +62,7 @@ class Cache {
 	/**
 	  * Return data from cache.
 	  * @param string $key - the key in the cache.
-	  * @return the data from the cache or NULL if not available.
+	  * @return mixed - the data from the cache or NULL if not available.
 	  */
 	public function get(string $key) {
 		$this->load();

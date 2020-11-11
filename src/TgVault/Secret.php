@@ -1,6 +1,8 @@
 <?php
 
-namespace Vault;
+namespace TgVault;
+
+require_once(__DIR__.'/commons.php');
 
 /**
   * A secret that holds the values from the vault.
@@ -33,7 +35,7 @@ class Secret {
 	/**
 	  * Returns a value from the secret.
 	  * @param string $key - the key of the value to be retrieved.
-	  * @return the value or NULL if not set.
+	  * @return string the value or NULL if not set.
 	  */
 	public function get(string $key) {
 		if (isset($this->data->$key)) return $this->data->$key;
@@ -42,7 +44,7 @@ class Secret {
 
 	/**
 	  * Returns any metadata - if set - from the vault for this secret
-	  * @return the metadata or NULL if not set
+	  * @return mixed the metadata or NULL if not set
 	  */
 	public function getMeta() {
 		return $this->metadata;

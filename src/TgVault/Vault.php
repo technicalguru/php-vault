@@ -1,6 +1,8 @@
 <?php
 
-namespace Vault;
+namespace TgVault;
+
+require_once(__DIR__.'/commons.php');
 
 /**
   * All vault types must implement this interface.
@@ -10,8 +12,8 @@ interface Vault {
 	/**
 	  * Returns the secret at the given path.
 	  * @param string $path - an arbitrary path that uniquely identifies a secret in the vault.
-	  * @return the Secret
-	  * @throws an exception when the secret cannot be found or retrieved.
+	  * @return Secret
+	  * @throws VaultException when the secret cannot be found or retrieved.
 	  */
 	public function getSecret(string $path);
 

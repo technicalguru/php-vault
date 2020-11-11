@@ -1,12 +1,14 @@
 <?php
 
-namespace Vault\File;
+namespace TgVault\File;
 
-use Vault\Vault;
-use Vault\BaseVault;
-use Vault\Secret;
-use Vault\VaultException;
-use Vault\Logger;
+require_once(__DIR__.'/../commons.php');
+
+use TgVault\Vault;
+use TgVault\BaseVault;
+use TgVault\Secret;
+use TgVault\VaultException;
+use TgVault\Logger;
 
 /**
   * A file based vault. The secrets are stored in JSON format in a file
@@ -57,8 +59,8 @@ class FileVault extends BaseVault implements Vault {
 	/**
 	  * Returns the secret at the given path.
 	  * @param string $path - an arbitrary path that uniquely identifies a secret in the vault.
-	  * @return the Secret
-	  * @throws an exception when the secret cannot be found or retrieved.
+	  * @return Secret
+	  * @throws VaultException when the secret cannot be found or retrieved.
 	  */
 	public function getSecret(string $path) {
 		$this->load();

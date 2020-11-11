@@ -1,8 +1,10 @@
 <?php
 
-namespace Vault\Hashicorp;
+namespace TgVault\Hashicorp;
 
-use Vault\VaultException;
+require_once(__DIR__.'/../commons.php');
+
+use TgVault\VaultException;
 
 /**
   * A configuration for the Hashicorp Vault.
@@ -62,7 +64,7 @@ class Config {
 	  * check that the given value exists and is not empty.
 	  * @param string $valueKey     - the config key to be verified
 	  * @param string $errorMessage - exception message to be thrown in case or error.
-	  * @throws an exception when the given key was not set.
+	  * @throws VaultException when the given key was not set.
 	  */
 	private function check($valueKey, $errorMessage) {
 		if (!isset($this->$valueKey)    || ($this->$valueKey == NULL) ||

@@ -1,6 +1,8 @@
 <?php
 
-namespace Vault;
+namespace TgVault;
+
+require_once(__DIR__.'/commons.php');
 
 /**
   * Base class for all vault implementations here.
@@ -23,8 +25,8 @@ class BaseVault implements Vault {
 	  * Returns the secret at the given path.
 	  * Must be overridden by subclasses.
 	  * @param string $path - an arbitrary path that uniquely identifies a secret in the vault.
-	  * @return the Secret
-	  * @throws an exception when the secret cannot be found or retrieved.
+	  * @return Secret
+	  * @throws VaultException when the secret cannot be found or retrieved.
 	  */
 	public function getSecret(string $path) {
 		throw new VaultException(get_class().'::getSecret() must be implemented.', VAULT_ERR_INTERNAL);
@@ -121,11 +123,11 @@ class BaseVault implements Vault {
 	}
 
 	/**
-	  * Copies the given object an redacts any sensitive strings, such as
+	  * Copies the given object and redacts any sensitive strings, such as
 	  * passwords, usernames and tokens. The decision is based on object
 	  * attribute names. Arrays are not redacted (!).
 	  * @param object $o - the object to clean
-	  * @return a cleaned object
+	  * @return \stdClass a cleaned object
 	  */
 	public static function cleanObject($o) {
 		if ($o == NULL) return NULL;

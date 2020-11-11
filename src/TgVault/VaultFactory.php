@@ -1,24 +1,8 @@
 <?php
 
-namespace Vault;
+namespace TgVault;
 
-define('VAULT_OK',                  0);
-define('VAULT_ERR_CONFIG_EMPTY',    1);
-define('VAULT_ERR_CONFIG_TYPE',     2);
-define('VAULT_ERR_TYPE_EMPTY',      3);
-define('VAULT_ERR_TYPE_NOT_FOUND',  4);
-define('VAULT_ERR_RENEWAL',         5);
-define('VAULT_ERR_TOKEN_EXPIRED',   6);
-define('VAULT_ERR_NO_TOKEN',        7);
-define('VAULT_ERR_SECRET_INTERNAL', 8);
-define('VAULT_ERR_SECRET',          9);
-define('VAULT_ERR_RENEWAL',        10);
-define('VAULT_ERR_CONFIG',         11);
-define('VAULT_ERR_NULL',           12);
-define('VAULT_ERR_NOT_FOUND',      13);
-define('VAULT_ERR_FILE_NOT_FOUND', 14);
-define('VAULT_ERR_HTTP_BASE',       0);
-define('VAULT_ERR_CURL_BASE',    1000);
+require_once(__DIR__.'/commons.php');
 
 /**
   * An easy way to create a vault based on a configuration.
@@ -33,7 +17,7 @@ class VaultFactory {
 	  * for configuration details.
 	  * @param mixed $config  - the configuration (array or object).
 	  * @param Logger $logger - the logger (optional)
-	  * @return the vault created, otherwise it will throw an exception.
+	  * @return Vault created, otherwise it will throw an exception.
 	  * @throws VaultException when the vault could not be created.
 	  */
 	public static function create($config, Logger $logger = NULL) {
@@ -49,13 +33,13 @@ class VaultFactory {
 	  * @param string $type   - the type of the vault
 	  * @param mixed  $config - the configuration to pass on.
 	  * @param Logger $logger - the logger (optional)
-	  * @return the vault created and configured
+	  * @return Vault created and configured
 	  * @throws VaultException when the vault could not be created.
 	  */
 	public static function createVault(string $type, $config = NULL, $logger = NULL) {
 		if (($type == NULL) || (trim($type) == '')) throw new VaultException('Vault type cannot be empty', VAULT_ERR_TYPE_EMPTY);
 		$type = ucfirst(trim($type));
-		$className = 'Vault\\'.$type.'\\'.$type.'Vault';
+		$className = 'TgVault\\'.$type.'\\'.$type.'Vault';
 		if (class_exists($className)) {
 			return new $className($config, $logger);
 		}
