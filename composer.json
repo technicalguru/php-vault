@@ -23,11 +23,6 @@
 			"TgVault\\" : "src/TgVault/"
 		}
 	},
-	"extra" : {
-		"branch-alias" : {
-			"dev-master" : "main-dev"
-		}
-	},
 	"require-dev" : {
 		"phpunit/phpunit" : "^9"
 	}
