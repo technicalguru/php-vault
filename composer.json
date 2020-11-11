@@ -1,5 +1,5 @@
 {
-	"name" : "technicalguru/vault-php",
+	"name" : "technicalguru/vault",
 	"description" : "A flexible, lightweight PHP-based vault to provide secrets dynamically",
 	"type" : "library",
 	"keywords" : [
@@ -12,7 +12,7 @@
 	"license" : "LGPL-3.0-or-later",
 	"authors" : [{
 			"name" : "TechnicalGuru",
-			"homepage" : "https://github.com/technicalguru/vault-php"
+			"homepage" : "https://github.com/technicalguru/php-vault"
 		}
 	],
 	"require" : {
