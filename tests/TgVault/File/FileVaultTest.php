@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Vault\File;
+namespace TgVault\File;
 
 use PHPUnit\Framework\TestCase;
 

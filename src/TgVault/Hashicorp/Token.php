@@ -1,6 +1,6 @@
 <?php
 
-namespace Vault\Hashicorp;
+namespace TgVault\Hashicorp;
 
 require_once(__DIR__.'/../commons.php');
 
@@ -54,7 +54,7 @@ class Token {
 
 	/**
 	  * Returns a basic info string for logging purposes.
-	  * @return info string about the token.
+	  * @return string info string about the token.
 	  */
 	public function getInfo() {
 		return substr($this->client_token, 0, 3).'**********'.substr($this->client_token, -3).' ['.

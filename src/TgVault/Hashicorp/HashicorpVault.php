@@ -1,14 +1,13 @@
 <?php
 
-namespace Vault\Hashicorp;
+namespace TgVault\Hashicorp;
 
 require_once(__DIR__.'/../commons.php');
 
-use Vault\Vault;
-use Vault\BaseVault;
-use Vault\Secret;
-use Vault\VaultException;
-use Vault\Logger;
+use TgVault\Vault;
+use TgVault\BaseVault;
+use TgVault\Secret;
+use TgVault\VaultException;
 
 /**
   * A vault representing an existing (!) Hashicorp Vault in the background.
@@ -50,8 +49,8 @@ class HashicorpVault extends BaseVault implements Vault {
 	/**
 	  * Returns the secret at the given path.
 	  * @param string $path - an arbitrary path that uniquely identifies a secret in the vault.
-	  * @return the Secret
-	  * @throws an exception when the secret cannot be found or retrieved.
+	  * @return Secret
+	  * @throws VaultException when the secret cannot be found or retrieved.
 	  */
 	public function getSecret(string $path) {
 		if (!isset($this->secrets[$path])) {
@@ -282,7 +281,7 @@ class HashicorpVault extends BaseVault implements Vault {
 	/**
 	  * Performs a GET request on the given path
 	  * @param string $path - the relative path at Vault URI to request
-	  * @return see #request($curl, $path) method.
+	  * @return \stdClass see #request($curl, $path) method.
 	  */
 	protected function GET($path) {
 		$curl = curl_init();
@@ -293,7 +292,7 @@ class HashicorpVault extends BaseVault implements Vault {
 	  * Performs a POST request on the given path
 	  * @param string $path - the relative path at Vault URI to request
 	  * @param object $data - the data to be posted (will be json-encoded)
-	  * @return see #request($curl, $path) method.
+	  * @return mixed see #request($curl, $path) method.
 	  */
 	protected function POST($path, $data) {
 		$body = json_encode($data);
@@ -312,7 +311,7 @@ class HashicorpVault extends BaseVault implements Vault {
 	  * Performs the actual curl request.
 	  * @param resource $curl - cURL handle as returned from curl_init()
 	  * @param string   $path - the relative path at Vault URI to request
-	  * @return see documentation below
+	  * @return \stdClass see documentation below
 	  */
 	protected function request($curl, $path, $additionalHeaders = array()) {
 		/**********************************

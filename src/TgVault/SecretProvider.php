@@ -1,6 +1,6 @@
 <?php
 
-namespace Vault;
+namespace TgVault;
 
 require_once(__DIR__.'/commons.php');
 
@@ -38,8 +38,8 @@ class SecretProvider {
 	  * Returns a value from the secret.
 	  * The provider will load the secret if not done yet.
 	  * @param string $key - the key of the value to be retrieved.
-	  * @return the value or NULL if not set.
-	  * @throws an exception when the secret does not exist.
+	  * @return string the value or NULL if not set.
+	  * @throws VaultException when the secret does not exist.
 	  */
 	public function get(string $key) {
 		if ($this->secret == NULL) {
@@ -53,7 +53,7 @@ class SecretProvider {
 
 	/**
 	  * Loads the secret.
-	  * @throws an exception when loading fails.
+	  * @throws VaultException when loading fails.
 	  */
 	protected function loadSecret() {
 		if ($this->secret == NULL) {

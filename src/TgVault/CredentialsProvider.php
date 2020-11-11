@@ -1,6 +1,6 @@
 <?php
 
-namespace Vault;
+namespace TgVault;
 
 require_once(__DIR__.'/commons.php');
 
@@ -34,7 +34,7 @@ class CredentialsProvider extends SecretProvider {
 
 	/**
 	  * Returns the username in the secret.
-	  * @return the username as given in the secret
+	  * @return string the username as given in the secret
 	  * @throws VaultException when the secret cannot be retrieved or does not exist
 	  */
 	public function getUsername() {
@@ -43,7 +43,7 @@ class CredentialsProvider extends SecretProvider {
 
 	/**
 	  * Returns the password in the secret.
-	  * @return the password as given in the secret
+	  * @return string the password as given in the secret
 	  * @throws VaultException when the secret cannot be retrieved or does not exist
 	  */
 	public function getPassword() {

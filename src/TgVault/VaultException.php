@@ -1,6 +1,6 @@
 <?php
 
-namespace Vault;
+namespace TgVault;
 
 require_once(__DIR__.'/commons.php');
 
@@ -12,7 +12,7 @@ class VaultException extends \Exception {
 	/**
 	  * Default constructor from PHP exception.
 	  */
-	public function __construct($message = null, $code = 0, Exception $previous = null) {
+	public function __construct($message = null, $code = 0, \Exception $previous = null) {
 		parent::__construct($message, $code, $previous);
 	}
 

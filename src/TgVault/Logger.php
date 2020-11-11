@@ -1,6 +1,6 @@
 <?php
 
-namespace Vault;
+namespace TgVault;
 
 require_once(__DIR__.'/commons.php');
 

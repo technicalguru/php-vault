@@ -20,7 +20,7 @@
 	},
 	"autoload" : {
 		"psr-4" : {
-			"Vault\\" : "Vault/"
+			"TgVault\\" : "src/TgVault/"
 		}
 	},
 	"extra" : {

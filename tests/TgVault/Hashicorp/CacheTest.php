@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Vault;
+namespace TgVault\Hashicorp;
 
 use PHPUnit\Framework\TestCase;
 

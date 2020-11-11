@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Vault\Memory;
+namespace TgVault\Memory;
 
 use PHPUnit\Framework\TestCase;
 

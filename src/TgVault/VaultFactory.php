@@ -1,6 +1,6 @@
 <?php
 
-namespace Vault;
+namespace TgVault;
 
 require_once(__DIR__.'/commons.php');
 
@@ -17,7 +17,7 @@ class VaultFactory {
 	  * for configuration details.
 	  * @param mixed $config  - the configuration (array or object).
 	  * @param Logger $logger - the logger (optional)
-	  * @return the vault created, otherwise it will throw an exception.
+	  * @return Vault created, otherwise it will throw an exception.
 	  * @throws VaultException when the vault could not be created.
 	  */
 	public static function create($config, Logger $logger = NULL) {
@@ -33,13 +33,13 @@ class VaultFactory {
 	  * @param string $type   - the type of the vault
 	  * @param mixed  $config - the configuration to pass on.
 	  * @param Logger $logger - the logger (optional)
-	  * @return the vault created and configured
+	  * @return Vault created and configured
 	  * @throws VaultException when the vault could not be created.
 	  */
 	public static function createVault(string $type, $config = NULL, $logger = NULL) {
 		if (($type == NULL) || (trim($type) == '')) throw new VaultException('Vault type cannot be empty', VAULT_ERR_TYPE_EMPTY);
 		$type = ucfirst(trim($type));
-		$className = 'Vault\\'.$type.'\\'.$type.'Vault';
+		$className = 'TgVault\\'.$type.'\\'.$type.'Vault';
 		if (class_exists($className)) {
 			return new $className($config, $logger);
 		}
