@@ -1,4 +1,4 @@
-# vault-php
+# technicalguru/php-vault
 A flexible PHP-based vault to provide secrets dynamically
 
 # License
@@ -9,11 +9,12 @@ This project is licensed under [GNU LGPL 3.0](LICENSE.md).
 ## By Composer
 
 ```
-composer install technicalguru/vault-php
+composer install technicalguru/vault
 ```
 
 ## By Package Download
-You can download the source code packages from [GitHub Release Page](https://github.com/technicalguru/vault-php/releases)
+You can download the source code packages from [GitHub Release Page](https://github.com/technicalguru/php-vault/releases)
+
 # Examples
 ## Create a HashicorpVault
 Please note that this vault is actually a client to an existing Hashicorp Vault.
@@ -31,8 +32,8 @@ $config = array(
 
 // Create the vault instance
 try {
-	$vault = \Vault\VaultFactory::create($config);
-} catch (\Vault\VaultException $e) {
+	$vault = \TgVault\VaultFactory::create($config);
+} catch (\TgVault\VaultException $e) {
 	// Vault could not be created
 }
 
@@ -60,8 +61,8 @@ $config = array(
 
 // Create the vault instance
 try {
-	$vault = \Vault\VaultFactory::create($config);
-} catch (\Vault\VaultException $e) {
+	$vault = \TgVault\VaultFactory::create($config);
+} catch (\TgVault\VaultException $e) {
 	// Vault could not be created
 }
 ```
@@ -79,8 +80,8 @@ $config = array(
 
 // Create the vault instance
 try {
-	$vault = \Vault\VaultFactory::create($config);
-} catch (\Vault\VaultException $e) {
+	$vault = \TgVault\VaultFactory::create($config);
+} catch (\TgVault\VaultException $e) {
 	// Vault could not be created
 }
 ```
@@ -108,7 +109,7 @@ The secrets file (JSON) shall look like this:
 try {
 	$mySecret1 = $vault->get('my/secret/number/1');
 	$mySecret2 = $vault->get('my/secret/number/2');
-} catch (\Vault\VaultException $e) {
+} catch (\TgVault\VaultException $e) {
 	// secret was not found
 }
 
@@ -126,8 +127,8 @@ You can use the `SecretProvider` or `CredentialsProvider` helper classes to pass
 or how to use a vault.
 
 ```
-$callback1 = new \Vault\SecretProvider($vault, 'my/secret/number/1');
-$callback2 = new \Vault\CredentialsProvider($vault, 'my/secret/number/2');
+$callback1 = new \TgVault\SecretProvider($vault, 'my/secret/number/1');
+$callback2 = new \TgVault\CredentialsProvider($vault, 'my/secret/number/2');
 
 try {
 	$username1 = $callback1->get('username');
@@ -135,7 +136,7 @@ try {
 
 	$username2 = $callback2->getUsername();
 	$password2 = $callback2->getPassword();
-} catch (\Vault\VaultException $e) {
+} catch (\TgVault\VaultException $e) {
 	// Secret cannot be retrieved or does not exist
 }
 ```
@@ -145,5 +146,5 @@ defaults are as given above for the `SecretProvider`.
 
 
 # Contribution
-Report a bug, request an enhancement or pull request at the [GitHub Issue Tracker](https://github.com/technicalguru/vault-php/issues).
+Report a bug, request an enhancement or pull request at the [GitHub Issue Tracker](https://github.com/technicalguru/php-vault/issues).
 
