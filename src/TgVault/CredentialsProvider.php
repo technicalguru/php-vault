@@ -9,7 +9,7 @@ require_once(__DIR__.'/commons.php');
   * An application can use this to fetch username and password on request only. The
   * CredentialsProvider will ask the vault in the backend transparently.
   */
-class CredentialsProvider extends SecretProvider {
+class CredentialsProvider extends SecretProvider implements \TgUtils\Auth\CredentialsProvider {
 
 	/** The key in the secret holding the username (default is 'username') */
 	private $usernameKey;
