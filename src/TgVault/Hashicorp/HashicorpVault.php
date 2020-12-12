@@ -28,7 +28,7 @@ class HashicorpVault extends BaseVault implements Vault {
 	/**
 	  * Constructor.
 	  * @param mixed  $config - the configuration, see Vaul\Hashicorp\Config for details.
-	  * @param object $logger - the logger, e.g. a Vault\Logger or a Psr\Log\LoggerInterface.
+	  * @param object $logger - the logger, e.g. a TgVault\Logger or a Psr\Log\LoggerInterface.
 	  */
 	public function __construct($config, $logger = NULL) {
 		parent::__construct($logger);
@@ -63,13 +63,13 @@ class HashicorpVault extends BaseVault implements Vault {
 			}
 		}
 
-		if (get_class($this->secrets[$path]) != 'Vault\\Secret') throw new VaultException('Secret not available', VAULT_ERR_SECRET);
+		if (get_class($this->secrets[$path]) != 'TgVault\\Secret') throw new VaultException('Secret not available', VAULT_ERR_SECRET);
 		return $this->secrets[$path];
 	}
 
 	/**
 	  * Set the logger and log all information via this object.
-	  * @param object $logger - the logging object, either Vault\Logger or Psr\Log\LoggerInterface
+	  * @param object $logger - the logging object, either TgVault\Logger or Psr\Log\LoggerInterface
 	  */
 	public function setLogger($logger) {
 		parent::setLogger($logger);
