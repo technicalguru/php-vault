@@ -15,7 +15,7 @@ class BaseVault implements Vault {
 
 	/**
 	  * Default constructor that only takes an optiona logger object.
-	  * @param object $logger - the logger object, can be a Psr\Log\LoggerInterface or a \Vault\Logger.
+	  * @param object $logger - the logger object, can be a Psr\Log\LoggerInterface or a \TgVault\Logger.
 	  */
 	public function __construct($logger = NULL) {
 		$this->logger   = $logger;
@@ -34,7 +34,7 @@ class BaseVault implements Vault {
 
 	/**
 	  * Set the logger and log all information via this object.
-	  * This can be a Psr\Log\LoggerInterface or a \Vault\Logger.
+	  * This can be a Psr\Log\LoggerInterface or a \TgVault\Logger.
 	  * @param Logger - the logging object.
 	  */
 	public function setLogger($logger) {

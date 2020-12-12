@@ -29,7 +29,7 @@ class VaultFactory {
 
 	/**
 	  * Creates the vault according to type and passes the config object.
-	  * The vault class must be defined as "Vault\Type\TypeVault".
+	  * The vault class must be defined as "TgVault\Type\TypeVault".
 	  * @param string $type   - the type of the vault
 	  * @param mixed  $config - the configuration to pass on.
 	  * @param Logger $logger - the logger (optional)
