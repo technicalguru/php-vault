@@ -21,6 +21,7 @@ class HashicorpVault extends BaseVault implements Vault {
 	protected $isTls;
 	protected $config;
 	protected $lastResult;
+	private   $loggedToken;
 	private   $cache;
 	private   $token;
 	private   $secrets;
@@ -33,9 +34,10 @@ class HashicorpVault extends BaseVault implements Vault {
 	public function __construct($config, $logger = NULL) {
 		parent::__construct($logger);
 		if ($config == NULL) throw new VaultException('Configuration must be set', VAULT_ERR_CONFIG_EMPTY);
-		$this->config   = new Config($config);
-		$this->isTls    = substr($this->config->uri, 0, 5) == 'https';
-		$this->cache    = new Cache($this->config->cacheFile, $logger);
+		$this->config      = new Config($config);
+		$this->isTls       = substr($this->config->uri, 0, 5) == 'https';
+		$this->cache       = new Cache($this->config->cacheFile, $logger);
+		$this->loggedToken = FALSE;
 	}
 
 	/**
@@ -184,7 +186,7 @@ class HashicorpVault extends BaseVault implements Vault {
 
 		if (($this->token != NULL) && !$this->loggedToken) {
 			$this->info('Using token: '.$this->token->getInfo());
-			$this->loggedToken = true;
+			$this->loggedToken = TRUE;
 		}
 
 		return $this->token;
