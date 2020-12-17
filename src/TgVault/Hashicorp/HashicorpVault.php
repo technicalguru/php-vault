@@ -21,6 +21,7 @@ class HashicorpVault extends BaseVault implements Vault {
 	protected $isTls;
 	protected $config;
 	protected $lastResult;
+	private   $loggedToken;
 	private   $cache;
 	private   $token;
 	private   $secrets;
@@ -33,9 +34,10 @@ class HashicorpVault extends BaseVault implements Vault {
 	public function __construct($config, $logger = NULL) {
 		parent::__construct($logger);
 		if ($config == NULL) throw new VaultException('Configuration must be set', VAULT_ERR_CONFIG_EMPTY);
-		$this->config   = new Config($config);
-		$this->isTls    = substr($this->config->uri, 0, 5) == 'https';
-		$this->cache    = new Cache($this->config->cacheFile, $logger);
+		$this->config      = new Config($config);
+		$this->isTls       = substr($this->config->uri, 0, 5) == 'https';
+		$this->cache       = new Cache($this->config->cacheFile, $logger);
+		$this->loggedToken = FALSE;
 	}
 
 	/**
@@ -52,18 +54,27 @@ class HashicorpVault extends BaseVault implements Vault {
 	  * @return Secret
 	  * @throws VaultException when the secret cannot be found or retrieved.
 	  */
-	public function getSecret(string $path) {
+	public function getSecret($path) {
 		if (!isset($this->secrets[$path])) {
 			$this->getToken();
 			$rc = $this->GET($path);
 			if (($rc->error == 0) && ($rc->http_code == 200) && is_object($rc->data->data)) {
-				$this->secrets[$path] = new Secret($rc->data->data);
+				// It's unclear why some vaults do answer with one level less (without metadata)
+				if (isset($rc->data->data->data)) {
+					$this->secrets[$path] = new Secret($rc->data->data);
+				} else {
+					$this->secrets[$path] = new Secret($rc->data);
+				}
 			} else {
 				$this->secrets[$path] = $rc;
 			}
 		}
 
-		if (get_class($this->secrets[$path]) != 'TgVault\\Secret') throw new VaultException('Secret not available', VAULT_ERR_SECRET);
+		if (get_class($this->secrets[$path]) != 'TgVault\\Secret') {
+			$ex = new VaultException('Secret not available', VAULT_ERR_SECRET);
+			$ex->setDetails($this->secrets[$path]);
+			throw $ex;
+		}
 		return $this->secrets[$path];
 	}
 
@@ -175,7 +186,7 @@ class HashicorpVault extends BaseVault implements Vault {
 
 		if (($this->token != NULL) && !$this->loggedToken) {
 			$this->info('Using token: '.$this->token->getInfo());
-			$this->loggedToken = true;
+			$this->loggedToken = TRUE;
 		}
 
 		return $this->token;
@@ -339,6 +350,7 @@ class HashicorpVault extends BaseVault implements Vault {
 			}
 		}
 		***********************************/
+		$additionalHeaders[] = 'X-Vault-Request: true';
 		if (($this->token != NULL) && isset($this->token->client_token)) {
 			$additionalHeaders[] = 'X-Vault-Token: '.$this->token->client_token;
 		}

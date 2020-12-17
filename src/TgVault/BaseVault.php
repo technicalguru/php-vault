@@ -28,7 +28,7 @@ class BaseVault implements Vault {
 	  * @return Secret
 	  * @throws VaultException when the secret cannot be found or retrieved.
 	  */
-	public function getSecret(string $path) {
+	public function getSecret($path) {
 		throw new VaultException(get_class().'::getSecret() must be implemented.', VAULT_ERR_INTERNAL);
 	}
 
@@ -47,7 +47,7 @@ class BaseVault implements Vault {
 	  * @param $s      - the string to be logged
 	  * @param $object - the object to be logged
 	  */
-	protected function debug(string $s, $object = NULL) {
+	protected function debug($s, $object = NULL) {
 		if ($this->logger != NULL) {
 			$object = self::cleanObject($object);
 			$psrInterface = '\\Psr\\Log\\LoggerInterface';
@@ -64,7 +64,7 @@ class BaseVault implements Vault {
 	  * @param $s      - the string to be logged
 	  * @param $object - the object to be logged
 	  */
-	protected function warn(string $s, $object = NULL) {
+	protected function warn($s, $object = NULL) {
 		if ($this->logger != NULL) {
 			$object = self::cleanObject($object);
 			$psrInterface = '\\Psr\\Log\\LoggerInterface';
@@ -81,7 +81,7 @@ class BaseVault implements Vault {
 	  * @param $s      - the string to be logged
 	  * @param $object - the object to be logged
 	  */
-	protected function info(string $s, $object = NULL) {
+	protected function info($s, $object = NULL) {
 		if ($this->logger != NULL) {
 			$object = self::cleanObject($object);
 			$psrInterface = '\\Psr\\Log\\LoggerInterface';
@@ -98,7 +98,7 @@ class BaseVault implements Vault {
 	  * @param $s      - the string to be logged
 	  * @param $object - the object to be logged
 	  */
-	protected function error(string $s, $object = NULL) {
+	protected function error($s, $object = NULL) {
 		if ($this->logger != NULL) {
 			$object = self::cleanObject($object);
 			$psrInterface = '\\Psr\\Log\\LoggerInterface';

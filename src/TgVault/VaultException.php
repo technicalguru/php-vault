@@ -9,6 +9,8 @@ require_once(__DIR__.'/commons.php');
   */
 class VaultException extends \Exception {
 
+	private $details;
+
 	/**
 	  * Default constructor from PHP exception.
 	  */
@@ -16,4 +18,19 @@ class VaultException extends \Exception {
 		parent::__construct($message, $code, $previous);
 	}
 
+	/**
+	  * Sets some debug information if available.
+	  * @param mixed $details - some debug info
+	  */
+	public function setDetails($details) {
+		$this->details = $details;
+	}
+
+	/**
+	  * Returns some debug information if available.
+	  * @return mixed $details - some debug info
+	  */
+	public function getDetails() {
+		return $this->details;
+	}
 }

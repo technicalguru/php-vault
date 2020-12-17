@@ -15,6 +15,30 @@ composer install technicalguru/vault
 ## By Package Download
 You can download the source code packages from [GitHub Release Page](https://github.com/technicalguru/php-vault/releases)
 
+# Hashicorp Setup
+The procedure is best described at [Hashicorp Blog](https://www.hashicorp.com/blog/authenticating-applications-with-vault-approle). It describes
+how to create an `approle`. Here is the essence of it:
+
+```
+# Enable the auth method for approle
+vault auth enable approle
+
+# Create a file with your policy on the respective secret path:
+cat 'path "secret/my-secret" { capabilities = ["read", "list"] }' >app-policy.hcl
+
+# Create the policy
+vault policy write my-app-policy app-policy.hcl
+
+# Create the approle
+vault write auth/approle/role/my-approle  secret_id_ttl=120m  token_ttl=60m  token_max_tll=120m  policies="my-app-policy"
+
+# Get the role ID printed
+vault read auth/approle/role/my-approle/role-id
+
+# Create the secret ID and print it
+vault write -f auth/approle/role/my-approle/secret-id
+```
+
 # Examples
 ## Create a HashicorpVault
 Please note that this vault is actually a client to an existing Hashicorp Vault.
@@ -107,8 +131,8 @@ The secrets file (JSON) shall look like this:
 
 ```
 try {
-	$mySecret1 = $vault->get('my/secret/number/1');
-	$mySecret2 = $vault->get('my/secret/number/2');
+	$mySecret1 = $vault->getSecret('my/secret/number/1');
+	$mySecret2 = $vault->getSecret('my/secret/number/2');
 } catch (\TgVault\VaultException $e) {
 	// secret was not found
 }
