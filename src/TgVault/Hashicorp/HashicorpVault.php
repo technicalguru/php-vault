@@ -57,7 +57,12 @@ class HashicorpVault extends BaseVault implements Vault {
 			$this->getToken();
 			$rc = $this->GET($path);
 			if (($rc->error == 0) && ($rc->http_code == 200) && is_object($rc->data->data)) {
-				$this->secrets[$path] = new Secret($rc->data->data);
+				// It's unclear why some vaults do answer with one level less (without metadata)
+				if (isset($rc->data->data->data)) {
+					$this->secrets[$path] = new Secret($rc->data->data);
+				} else {
+					$this->secrets[$path] = new Secret($rc->data);
+				}
 			} else {
 				$this->secrets[$path] = $rc;
 			}
