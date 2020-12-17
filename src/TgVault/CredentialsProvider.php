@@ -24,7 +24,7 @@ class CredentialsProvider extends SecretProvider implements \TgUtils\Auth\Creden
 	  * @param string $passwordKey - the key in the secret holding the password (default is 'password')
 	  * @throws VaultException when vault or path are NULL
 	  */
-	public function __construct(Vault $vault, $path, $usernameKey = NULL, $passwordKey = NULL) {
+	public function __construct($vault, $path, $usernameKey = NULL, $passwordKey = NULL) {
 		parent::__construct($vault, $path);
 		if (($usernameKey == NULL) || (trim($usernameKey) == '')) $usernameKey = 'username';
 		if (($passwordKey == NULL) || (trim($passwordKey) == '')) $passwordKey = 'password';

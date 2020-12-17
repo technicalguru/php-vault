@@ -26,7 +26,7 @@ class SecretProvider {
 	  * @param string $passwordKey - the key in the secret holding the password (default is 'password')
 	  * @throws VaultException when vault or path are NULL
 	  */
-	public function __construct(Vault $vault, $path) {
+	public function __construct($vault, $path) {
 		if ($vault == NULL) throw new VaultException('Vault cannot be NULL.', VAULT_ERR_NULL);
 		if ($path  == NULL) throw new VaultException('Path cannot be NULL.', VAULT_ERR_NULL);
 		$this->vault  = $vault;

@@ -22,6 +22,6 @@ interface Vault {
 	  * It is up to the vault whether it uses the logger and what it logs there.
 	  * @param Logger - the logging object.
 	  */
-	public function setLogger(Logger $logger);
+	public function setLogger($logger);
 }
 
