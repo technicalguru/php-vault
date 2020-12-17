@@ -63,7 +63,11 @@ class HashicorpVault extends BaseVault implements Vault {
 			}
 		}
 
-		if (get_class($this->secrets[$path]) != 'TgVault\\Secret') throw new VaultException('Secret not available', VAULT_ERR_SECRET);
+		if (get_class($this->secrets[$path]) != 'TgVault\\Secret') {
+			$ex = new VaultException('Secret not available', VAULT_ERR_SECRET);
+			$ex->setDetails($this->secrets[$path]);
+			throw $ex;
+		}
 		return $this->secrets[$path];
 	}
 
