@@ -350,6 +350,7 @@ class HashicorpVault extends BaseVault implements Vault {
 			}
 		}
 		***********************************/
+		$additionalHeaders[] = 'X-Vault-Request: true';
 		if (($this->token != NULL) && isset($this->token->client_token)) {
 			$additionalHeaders[] = 'X-Vault-Token: '.$this->token->client_token;
 		}
