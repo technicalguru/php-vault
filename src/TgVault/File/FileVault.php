@@ -62,7 +62,7 @@ class FileVault extends BaseVault implements Vault {
 	  * @return Secret
 	  * @throws VaultException when the secret cannot be found or retrieved.
 	  */
-	public function getSecret(string $path) {
+	public function getSecret($path) {
 		$this->load();
 		if (!isset($this->secrets[$path])) {
 			throw new VaultException('Secret not available', VAULT_ERR_NOT_FOUND);

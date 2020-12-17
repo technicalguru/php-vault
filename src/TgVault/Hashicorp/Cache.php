@@ -21,7 +21,7 @@ class Cache {
 	  * @param string $cacheFile - where the cache is located in filesystem.
 	  * @param object $logger    - a logger, either TgVault\Logger or Psr\Log\LoggerInterface
 	  */
-	public function __construct(string $cacheFile, $logger = NULL) {
+	public function __construct($cacheFile, $logger = NULL) {
 		$this->cacheFile = $cacheFile;
 		$this->logger    = $logger;
 	}
@@ -64,7 +64,7 @@ class Cache {
 	  * @param string $key - the key in the cache.
 	  * @return mixed - the data from the cache or NULL if not available.
 	  */
-	public function get(string $key) {
+	public function get($key) {
 		$this->load();
 		if (isset($this->data->$key)) {
 			return $this->data->$key;
@@ -77,7 +77,7 @@ class Cache {
 	  * @param string $key   - the key in the cache.
 	  * @param mixed  $value - the value to be stored.
 	  */
-	public function set(string $key, $value) {
+	public function set($key, $value) {
 		$this->load();
 		$this->data->$key = $value;
 		$this->save();

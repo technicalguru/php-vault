@@ -15,7 +15,7 @@ interface Vault {
 	  * @return Secret
 	  * @throws VaultException when the secret cannot be found or retrieved.
 	  */
-	public function getSecret(string $path);
+	public function getSecret($path);
 
 	/**
 	  * Set the logger and log all information via this object.

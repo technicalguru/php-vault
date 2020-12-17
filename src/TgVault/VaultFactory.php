@@ -36,7 +36,7 @@ class VaultFactory {
 	  * @return Vault created and configured
 	  * @throws VaultException when the vault could not be created.
 	  */
-	public static function createVault(string $type, $config = NULL, $logger = NULL) {
+	public static function createVault($type, $config = NULL, $logger = NULL) {
 		if (($type == NULL) || (trim($type) == '')) throw new VaultException('Vault type cannot be empty', VAULT_ERR_TYPE_EMPTY);
 		$type = ucfirst(trim($type));
 		$className = 'TgVault\\'.$type.'\\'.$type.'Vault';

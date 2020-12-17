@@ -78,7 +78,7 @@ class Config {
 	  * @param string $roleId   - the role ID in vault
 	  * @param string $secretId - the secret ID of the client
 	  */
-	public function setVaultCredentials(string $roleId, string $secretId) {
+	public function setVaultCredentials($roleId, $secretId) {
 		$this->roleId   = $roleId;
 		$this->secretId = $secretId;
 		$this->check('roleId',   'Vault AppRole ID not set');

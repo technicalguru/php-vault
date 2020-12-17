@@ -37,7 +37,7 @@ class Secret {
 	  * @param string $key - the key of the value to be retrieved.
 	  * @return string the value or NULL if not set.
 	  */
-	public function get(string $key) {
+	public function get($key) {
 		if (isset($this->data->$key)) return $this->data->$key;
 		return NULL;
 	}
