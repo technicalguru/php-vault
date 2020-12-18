@@ -23,14 +23,18 @@ how to create an `approle`. Here is the essence of it:
 # Enable the auth method for approle
 vault auth enable approle
 
+# Create a renewal policy
+echo 'path "auth/token/*" { capabilities = [ "create", "read", "update", "delete", "list", "sudo" ] }' >renewal-policy.hcl
+vault policy write renewal-policy renewal-policy.hcl
+
 # Create a file with your policy on the respective secret path:
 cat 'path "secret/my-secret" { capabilities = ["read", "list"] }' >app-policy.hcl
 
 # Create the policy
 vault policy write my-app-policy app-policy.hcl
 
-# Create the approle
-vault write auth/approle/role/my-approle  secret_id_ttl=120m  token_ttl=60m  token_max_tll=120m  policies="my-app-policy"
+# Create the approle with renewal-policy and your application policy
+vault write auth/approle/role/my-approle token_policies=renewal-policy,my-app-policy token_period=30m token_ttl=30m token_max_ttl=1h token_explicit_max_ttl=2h
 
 # Get the role ID printed
 vault read auth/approle/role/my-approle/role-id
@@ -38,6 +42,8 @@ vault read auth/approle/role/my-approle/role-id
 # Create the secret ID and print it
 vault write -f auth/approle/role/my-approle/secret-id
 ```
+
+Please notice that you need to recreate the secret ID whenever you change the application role or a policy.
 
 # Examples
 ## Create a HashicorpVault
