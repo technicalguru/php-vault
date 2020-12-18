@@ -43,6 +43,14 @@ class Secret {
 	}
 
 	/**
+	 * Returns the keys that are available in this secret.
+	 * @return list of keys.
+	 */
+	public function keys() {
+		return array_keys(get_object_vars($this->data));
+	}
+
+	/**
 	  * Returns any metadata - if set - from the vault for this secret
 	  * @return mixed the metadata or NULL if not set
 	  */
