@@ -1,4 +1,7 @@
 # Test script
 
 composer update
-./vendor/phpunit/phpunit/phpunit tests
+RC=./vendor/phpunit/phpunit/phpunit tests
+rm -rf vendor composer.lock
+exit $RC
+
