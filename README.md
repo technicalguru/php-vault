@@ -8,7 +8,7 @@ This project is licensed under [GNU LGPL 3.0](LICENSE.md).
 
 ## By Composer
 
-```
+```sh
 composer install technicalguru/vault
 ```
 
@@ -19,7 +19,7 @@ You can download the source code packages from [GitHub Release Page](https://git
 The procedure is best described at [Hashicorp Blog](https://www.hashicorp.com/blog/authenticating-applications-with-vault-approle). It describes
 how to create an `approle`. Here is the essence of it:
 
-```
+```sh
 # Enable the auth method for approle
 vault auth enable approle
 
@@ -49,7 +49,7 @@ Please notice that you need to recreate the secret ID whenever you change the ap
 ## Create a HashicorpVault
 Please note that this vault is actually a client to an existing Hashicorp Vault.
 
-```
+```php
 // Create configuration
 $config = array(
 	'type'   => 'hashicorp',
@@ -71,7 +71,7 @@ try {
 
 ## Create a MemoryVault
 
-```
+```php
 // Create configuration
 $config = array(
 	'type'   => 'memory',
@@ -99,7 +99,7 @@ try {
 
 ## Create a FileVault
 
-```
+```php
 // Create configuration
 $config = array(
 	'type'   => 'file',
@@ -118,7 +118,7 @@ try {
 
 The secrets file (JSON) shall look like this:
 
-```
+```json
 {
 	"secrets": {
 		"my/secret/number/1" : {
@@ -135,7 +135,7 @@ The secrets file (JSON) shall look like this:
 
 ## Retrieving a secret
 
-```
+```php
 try {
 	$mySecret1 = $vault->getSecret('my/secret/number/1');
 	$mySecret2 = $vault->getSecret('my/secret/number/2');
@@ -156,7 +156,7 @@ or an error occurred while retrieval.
 You can use the `SecretProvider` or `CredentialsProvider` helper classes to pass them credentials without knowing where they come from
 or how to use a vault.
 
-```
+```php
 $callback1 = new \TgVault\SecretProvider($vault, 'my/secret/number/1');
 $callback2 = new \TgVault\CredentialsProvider($vault, 'my/secret/number/2');
 
