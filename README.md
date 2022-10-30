@@ -9,7 +9,7 @@ This project is licensed under [GNU LGPL 3.0](LICENSE.md).
 ## By Composer
 
 ```sh
-composer install technicalguru/vault
+composer require technicalguru/vault
 ```
 
 ## By Package Download
